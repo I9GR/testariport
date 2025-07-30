@@ -1,0 +1,453 @@
+/* إعدادات عامة للخطوط والألوان */
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@200;300;400;500;600;700;800&display=swap');
+
+:root {
+  --primary-color: #1e40af;
+  --secondary-color: #3b82f6;
+  --accent-color: #10b981;
+  --danger-color: #ef4444;
+  --warning-color: #f59e0b;
+  --success-color: #22c55e;
+  --dark-color: #1f2937;
+  --light-color: #f8fafc;
+  --border-color: #e5e7eb;
+  --text-primary: #111827;
+  --text-secondary: #6b7280;
+  --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+  --gradient-primary: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --gradient-secondary: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+/* إعدادات أساسية */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Cairo', sans-serif;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  min-height: 100vh;
+  padding: 20px;
+  color: var(--text-primary);
+  direction: rtl;
+  text-align: right;
+}
+
+/* الحاوي الرئيسي */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="50" cy="50" r="1" fill="%23ffffff" opacity="0.05"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* العنوان الرئيسي */
+h1 {
+  text-align: center;
+  color: white;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+h1::after {
+  content: '✈️';
+  position: absolute;
+  top: -10px;
+  right: -40px;
+  font-size: 1.5rem;
+  animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+/* حاوي النموذج */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  border-radius: 20px;
+  padding: 2rem;
+  box-shadow: var(--shadow-lg);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+/* عناصر النموذج */
+label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+select, input[type="text"] {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  border: 2px solid var(--border-color);
+  border-radius: 12px;
+  font-size: 1rem;
+  font-family: 'Cairo', sans-serif;
+  background: white;
+  margin-bottom: 1.5rem;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-sm);
+}
+
+select:focus, input[type="text"]:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+  transform: translateY(-2px);
+}
+
+select:hover, input[type="text"]:hover {
+  border-color: var(--secondary-color);
+  transform: translateY(-1px);
+}
+
+/* زر العرض */
+#fetchBtn {
+  width: 100%;
+  padding: 1rem 2rem;
+  background: var(--gradient-primary);
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: var(--shadow-md);
+  position: relative;
+  overflow: hidden;
+}
+
+#fetchBtn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s;
+}
+
+#fetchBtn:hover::before {
+  left: 100%;
+}
+
+#fetchBtn:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+#fetchBtn:active {
+  transform: translateY(-1px);
+}
+
+/* حالة التحميل */
+#loading {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  font-weight: 600;
+}
+
+#loading::after {
+  content: '';
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid var(--border-color);
+  border-top: 3px solid var(--primary-color);
+  border-radius: 50%;
+  margin-right: 10px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* الجدول */
+#output {
+  margin-top: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  margin-bottom: 2rem;
+}
+
+th {
+  background: var(--gradient-primary);
+  color: white;
+  padding: 1.5rem 1rem;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.1rem;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+td {
+  padding: 1.25rem 1rem;
+  border-bottom: 1px solid var(--border-color);
+  text-align: center;
+  vertical-align: middle;
+  transition: background-color 0.3s ease;
+}
+
+tr:hover td {
+  background-color: rgba(59, 130, 246, 0.05);
+}
+
+tr:nth-child(even) td {
+  background-color: rgba(248, 250, 252, 0.5);
+}
+
+/* صور شركات الطيران */
+td img {
+  height: 25px;
+  width: auto;
+  margin-left: 8px;
+  border-radius: 4px;
+  vertical-align: middle;
+  box-shadow: var(--shadow-sm);
+}
+
+/* التنقل بين الصفحات */
+#pagination {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: 2rem;
+  flex-wrap: wrap;
+}
+
+#pagination button {
+  padding: 0.75rem 1.25rem;
+  border: 2px solid var(--primary-color);
+  background: white;
+  color: var(--primary-color);
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-family: 'Cairo', sans-serif;
+  transition: all 0.3s ease;
+  min-width: 45px;
+}
+
+#pagination button:hover:not(:disabled) {
+  background: var(--primary-color);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+#pagination button:disabled {
+  background: var(--primary-color);
+  color: white;
+  cursor: not-allowed;
+  box-shadow: var(--shadow-md);
+}
+
+/* رسائل الخطأ */
+#output:has-text("حدث خطأ"),
+#output:has-text("لا توجد رحلات"),
+#output:has-text("الرجاء اختيار مطار") {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger-color);
+  border-radius: 12px;
+  border: 2px solid rgba(239, 68, 68, 0.2);
+  font-weight: 600;
+}
+
+/* التصميم المتجاوب */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+
+  h1 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  h1::after {
+    right: -30px;
+    font-size: 1.2rem;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+    border-radius: 15px;
+  }
+
+  table {
+    font-size: 0.9rem;
+  }
+
+  th, td {
+    padding: 1rem 0.5rem;
+  }
+
+  td img {
+    height: 20px;
+    margin-left: 5px;
+  }
+
+  #pagination {
+    gap: 0.25rem;
+  }
+
+  #pagination button {
+    padding: 0.5rem 0.75rem;
+    font-size: 0.9rem;
+    min-width: 40px;
+  }
+}
+
+@media (max-width: 480px) {
+  h1 {
+    font-size: 1.75rem;
+  }
+
+  .form-container {
+    padding: 1rem;
+    margin: 0 5px;
+  }
+
+  table {
+    font-size: 0.8rem;
+  }
+
+  th, td {
+    padding: 0.75rem 0.25rem;
+  }
+
+  /* إخفاء بعض الأعمدة في الشاشات الصغيرة */
+  th:nth-child(3), td:nth-child(3) {
+    display: none;
+  }
+
+  #pagination button {
+    padding: 0.5rem;
+    font-size: 0.8rem;
+    min-width: 35px;
+  }
+}
+
+/* تحسينات إضافية للأداء */
+table {
+  will-change: scroll-position;
+}
+
+tr {
+  will-change: background-color;
+}
+
+button {
+  will-change: transform;
+}
+
+/* تأثيرات متقدمة */
+.form-container {
+  position: relative;
+}
+
+.form-container::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: var(--gradient-primary);
+  border-radius: 22px;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.form-container:hover::before {
+  opacity: 0.1;
+}
+
+/* تأثير التمرير السلس */
+html {
+  scroll-behavior: smooth;
+}
+
+/* تحسين التباين للنصوص */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #000000;
+    --text-secondary: #333333;
+    --border-color: #666666;
+  }
+}
+
+/* تقليل الحركة للمستخدمين الذين يفضلون ذلك */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+/* تصميم متجاوب للهواتف */
+@media (max-width: 768px) {
+  body {
+    padding: 10px;
+  }
+  
+  h1 {
+    font-size: 2rem;
+  }
+  
+  select, input[type="text"] {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  button {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  table {
+    font-size: 0.9rem;
+  }
+  
+  th, td {
+    padding: 10px 8px;
+  }
+}

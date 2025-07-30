@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl"> 
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title> رحلات المطارات</title> <!--العنوان-->
+  <link rel="stylesheet" href="styles.css"> <!--ربط بملف الCSS-->
+</head>
+
+  <h1> رحلات المطارات</h1> 
+
+  <label for="airport"></label> 
+  
+  <select id="airport"> <!--الخيارات-->
+    <option value="">اختار المطار</option>
+    <option value="JED">مطار جدة</option>
+    <option value="RUH">مطار الرياض</option>
+    <option value="DMM">مطار الدمام </option>
+    <option value="MED">مطار المدينة المنورة</option>
+
+  </select>
+  
+<br>
+
+  <input type="text" id="search" placeholder="ابحث عن رقم رحلة أو شركة الطيران">  <!--نص البحث -->
+
+  <br>
+  
+  <button id="fetchBtn">عرض الرحلات</button> <!-- الزر -->
+
+  <div id="output"></div>
+  <div id="pagination"></div>
+
+
+  <div id="loading" style="display: none;">جاري تحميل البيانات...</div>
+
+  <script src="secript.js"></script> <!--ربط بملف الJS-->
+</body>
+</html>
